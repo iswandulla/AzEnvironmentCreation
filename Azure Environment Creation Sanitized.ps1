@@ -1,5 +1,5 @@
 # Azure Environment Creation script
-# Will Mason-01-05-20
+# Iswandulla-01-05-20
 # The intent of this script is to create a small environment for veeam office 365 deployments
 # The objects created will be stored in resource groups specific to the functions of VM, Storage and Networking
 
