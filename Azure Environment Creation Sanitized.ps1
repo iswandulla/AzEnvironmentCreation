@@ -15,7 +15,7 @@ $VnetName = "Prod-net"
 [String]$SubnetName = "Server"
 [String]$Supernet = '10.0.0.0/16'
 [String]$SubnetScope = '10.0.240.0/24'
-[String]$GWSubnet = '10.0.0.0/24'
+[String]$GWSubnet = '10.0.0.0/29'
 
 #Define the VM marketplace image details.
 $azureVmPublisherName = "MicrosoftWindowsServer"
@@ -54,7 +54,7 @@ $azureVmSkus = "2019-Datacenter"
  Start-sleep -Seconds 30
 
 ########Create NSG Rules then NSG
- $Rule1 = New-AzNetworkSecurityRuleConfig -Name "RDP-Admin" -Description "Allow RDP from WM ip" -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix $Exip -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389
+ $Rule1 = New-AzNetworkSecurityRuleConfig -Name "RDP-Admin" -Description "Allow RDP from Creator ip" -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix $Exip -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389
  New-AzNetworkSecurityGroup -Name $NSG -ResourceGroupName $RG2Name  -Location  $azureLocation -SecurityRules $Rule1 -Tag @{Object="NSG"; Application="Veeam"} -Verbose
  Start-Sleep -seconds 15
  $nsgId = get-AzNetworkSecurityGroup -name $NSG -ResourceGroupName $RG2Name
